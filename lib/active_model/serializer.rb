@@ -167,10 +167,6 @@ end
       keys
     end
 
-    def serializable_data
-      embedded_in_root_associations.merge!(super)
-    end
-
     def embedded_in_root_associations
       associations = self.class._associations
       included_associations = filter(associations.keys)
