@@ -2,7 +2,7 @@ require 'test_helper'
 
 module ActiveModel
   class Serializer
-    class HasOneTest < ActiveModel::TestCase
+    class HasOneTest < ActiveRecord::TestCase
       def setup
         @association = UserSerializer._associations[:profile]
         @old_association = @association.dup

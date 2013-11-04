@@ -2,7 +2,7 @@ require 'test_helper'
 
 module ActiveModel
   class DefaultSerializer
-    class Test < ActiveModel::TestCase
+    class Test < ActiveRecord::TestCase
       def test_serialize_objects
         assert_equal(nil, DefaultSerializer.new(nil).serializable_hash)
         assert_equal(1, DefaultSerializer.new(1).serializable_hash)

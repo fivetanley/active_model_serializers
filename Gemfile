@@ -7,4 +7,5 @@ gem 'sqlite3'
 gem 'coveralls', :require => false
 gem 'simplecov', :require => false
 
-gem 'rails', "~> 4.0.0"
+gem 'rails', "~> 2.3"
+gem 'iconv'

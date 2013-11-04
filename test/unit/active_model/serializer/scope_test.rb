@@ -2,7 +2,7 @@ require 'test_helper'
 
 module ActiveModel
   class Serializer
-    class ScopeTest < ActiveModel::TestCase
+    class ScopeTest < ActiveRecord::TestCase
       def setup
         @serializer = ProfileSerializer.new(nil, scope: current_user)
       end

@@ -2,7 +2,7 @@ require 'test_helper'
 
 module ActiveModel
   class Serializer
-    class HasManyTest < ActiveModel::TestCase
+    class HasManyTest < ActiveRecord::TestCase
       def setup
         @association = PostSerializer._associations[:comments]
         @old_association = @association.dup
@@ -70,6 +70,7 @@ module ActiveModel
           end
         end
 
+        assert_equal ({ :foo => nil }).as_json, { :foo => nil }
         assert_equal({
           'post' => { title: 'Title 1', body: 'Body 1', comments: [nil] }
         }, @post_serializer.as_json)

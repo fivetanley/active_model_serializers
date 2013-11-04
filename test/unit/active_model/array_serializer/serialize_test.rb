@@ -2,7 +2,7 @@ require 'test_helper'
 
 module ActiveModel
   class ArraySerializer
-    class SerializeTest < ActiveModel::TestCase
+    class SerializeTest < ActiveRecord::TestCase
       def setup
         array = [1, 2, 3]
         @serializer = ActiveModel::Serializer.serializer_for(array).new(array)

@@ -1,9 +1,16 @@
+require 'active_record'
 require 'active_model/array_serializer'
 require 'active_model/serializable'
 require 'active_model/serializer/associations'
 require 'active_model/serializer/config'
 
 require 'thread'
+
+module ActiveRecord
+  class Base
+    alias read_attribute_for_serialization send
+  end
+end
 
 module ActiveModel
   class Serializer

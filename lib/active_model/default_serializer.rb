@@ -10,6 +10,7 @@ module ActiveModel
     end
 
     def serializable_hash(*)
+      return nil if @object.nil?
       @object.as_json
     end
     alias serializable_object serializable_hash

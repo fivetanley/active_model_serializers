@@ -13,12 +13,11 @@ Gem::Specification.new do |gem|
   gem.files         = Dir['README.md', 'CHANGELOG.md', 'CONTRIBUTING.md', 'DESIGN.textile', 'MIT-LICENSE', 'lib/**/*', 'test/**/*']
   gem.test_files    = Dir['test/**/*']
 
-  gem.name          = "active_model_serializers"
+  gem.name          = "active_model_serializers_rails_2.3"
   gem.require_paths = ["lib"]
   gem.version       = ActiveModel::Serializer::VERSION
 
   gem.required_ruby_version = ">= 1.9.3"
 
-  gem.add_dependency "activemodel", ">= 3.2"
-  gem.add_development_dependency "rails", ">= 3.2"
+  gem.add_development_dependency "rails", "~> 2.3"
 end

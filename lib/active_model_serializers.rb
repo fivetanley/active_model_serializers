@@ -1,4 +1,5 @@
-require 'active_model'
+require 'active_support'
+require 'active_model/as_json_overrides'
 require 'active_model/serializer'
 require 'active_model/serializer_support'
 require 'active_model/serializer/version'

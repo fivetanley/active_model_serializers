@@ -27,11 +27,11 @@ ActiveRecord::Schema.define do
     t.string :name
   end
 
-  create_table :ar_posts_tags, force: true do |t|
+  create_table :ar_posts_tags, force: true, id: false do |t|
     t.references :ar_post, :ar_tag, index: true
   end
 
-  create_table :ar_comments_tags, force: true do |t|
+  create_table :ar_comments_tags, force: true, id: false do |t|
     t.references :ar_comment, :ar_tag, index: true
   end
 end
