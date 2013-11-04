@@ -4,6 +4,16 @@
 
 # ActiveModel::Serializers
 
+# Important Notes for this Rails 2.3 Backport
+
+This is a backport of the ActiveModel::Serializers gem to be compatible with
+Rails 2.3. The following features have been removed:
+
+* Controller `render` method support. This means you'll need to instantiate
+the serializer yourself and pass it to `render`. E.g. `render :json => FooSerializer.new(foo)`
+* `current_user` and such support. Might be baked in later.
+* Generators are gone as well.
+
 ## Purpose
 
 `ActiveModel::Serializers` encapsulates the JSON serialization of objects. 
@@ -23,7 +33,7 @@ The easiest way to install `ActiveModel::Serializers` is to add it to your
 `Gemfile`:
 
 ```ruby
-gem "active_model_serializers"
+gem "active_model_serializers_rails2.3"
 ```
 
 Then, install it on the command line:
