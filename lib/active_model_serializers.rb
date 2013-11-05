@@ -3,7 +3,7 @@ require 'active_model/as_json_overrides'
 require 'active_model/serializer'
 require 'active_model/serializer_support'
 require 'active_model/serializer/version'
-require 'active_model/serializer/railtie' if defined?(Rails)
+require 'active_model/serializer/railtie' if defined?(Rails) && defined?(Rails::Railtie)
 
 begin
   require 'action_controller'
