@@ -15,6 +15,7 @@ end
 module ActiveModel
   class Serializer
     include Serializable
+    extend ActiveSupport::Inflector
 
     @mutex = Mutex.new
 
@@ -22,6 +23,24 @@ module ActiveModel
       def inherited(base)
         base._attributes = []
         base._associations = {}
+      end
+      def const_regexp(camel_cased_word) #:nodoc:
+        parts = camel_cased_word.split("::")
+        last  = parts.pop
+
+        parts.reverse.inject(last) do |acc, part|
+          part.empty? ? acc : "#{part}(::#{acc})?"
+        end
+      end
+      def safe_constantize(camel_cased_word)
+        begin
+          constantize(camel_cased_word)
+        rescue NameError => e
+          raise unless e.message =~ /(uninitialized constant|wrong constant name) #{const_regexp(camel_cased_word)}$/ ||
+            e.name.to_s == camel_cased_word.to_s
+        rescue ArgumentError => e
+          raise unless e.message =~ /not missing constant #{const_regexp(camel_cased_word)}\!$/
+        end
       end
 
       def setup
@@ -61,7 +80,7 @@ end
           if resource.respond_to?(:to_ary)
             ArraySerializer
           else
-            "#{resource.class.name}Serializer".safe_constantize
+            safe_constantize "#{resource.class.name}Serializer"
           end
         end
       end
@@ -190,4 +209,5 @@ end
     end
     alias_method :serializable_object, :serializable_hash
   end
+
 end

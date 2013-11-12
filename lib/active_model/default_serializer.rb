@@ -11,7 +11,11 @@ module ActiveModel
 
     def serializable_hash(*)
       return nil if @object.nil?
-      @object.as_json
+      if @object.is_a?(Struct)
+        Hash[@object.members.zip(@object.values)]
+      else
+        @object.as_json
+      end
     end
     alias serializable_object serializable_hash
   end
