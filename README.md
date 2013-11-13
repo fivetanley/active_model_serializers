@@ -10,9 +10,11 @@ This is a backport of the ActiveModel::Serializers gem to be compatible with
 Rails 2.3. The following features have been removed:
 
 * Controller `render` method support. This means you'll need to instantiate
-the serializer yourself and pass it to `render`. E.g. `render :json => FooSerializer.new(foo)`
-* `current_user` and such support. Might be baked in later.
+the serializer yourself and pass it to `render`. E.g. `render :json => FooSerializer.new(foo, scope: user)`
 * Generators are gone as well.
+* Probably won't be supported for a long amount of time. Please do your best to upgrade
+to rails 3.2+ as soon as possible. Feel free to open an issue whenever I run
+too far behind upstream's master branch.
 
 ## Rails 2-3- 0.9.0
 
@@ -39,7 +41,7 @@ The easiest way to install `ActiveModel::Serializers` is to add it to your
 `Gemfile`:
 
 ```ruby
-gem "active_model_serializers_rails2.3"
+gem "active_model_serializers_rails2.3", git: "https://github.com/fivetanley/active_model_serializers", branch: 'rails-2.3'
 ```
 
 Then, install it on the command line:
