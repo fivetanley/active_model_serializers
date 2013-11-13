@@ -50,7 +50,7 @@ module ActiveModel
         @association.embed = :objects
 
         assert_equal({
-          name: 'Name 1', email: 'mail@server.com', 'profiles' => [{ name: 'N1', description: 'D1' }]
+          name: 'Name 1', email: 'mail@server.com', profile: { name: 'N1', description: 'D1' }
         }, @user_serializer.serializable_hash)
       end
 
@@ -58,7 +58,7 @@ module ActiveModel
         @association.embed = :objects
 
         assert_equal({
-          'user' => { name: 'Name 1', email: 'mail@server.com', 'profiles' => [{ name: 'N1', description: 'D1' }] }
+          'user' => { name: 'Name 1', email: 'mail@server.com', profile: { name: 'N1', description: 'D1' } }
         }, @user_serializer.as_json)
       end
 
@@ -84,7 +84,7 @@ module ActiveModel
         end
 
         assert_equal({
-          'user' => { name: 'Name 1', email: 'mail@server.com', 'profiles' => [] }
+          'user' => { name: 'Name 1', email: 'mail@server.com', profile: nil }
         }, @user_serializer.as_json)
       end
 
@@ -93,7 +93,7 @@ module ActiveModel
         @association.embedded_key = 'root'
 
         assert_equal({
-          name: 'Name 1', email: 'mail@server.com', 'root' => [{ name: 'N1', description: 'D1' }]
+          name: 'Name 1', email: 'mail@server.com', 'root' => { name: 'N1', description: 'D1' }
         }, @user_serializer.serializable_hash)
       end
 
@@ -116,7 +116,7 @@ module ActiveModel
         }, @user_serializer.as_json)
       end
 
-      def test_associations_using_a_given_serializer
+      def test_associations_embedding_ids_using_a_given_serializer
         @association.embed = :ids
         @association.embed_in_root = true
         @association.serializer_class = Class.new(ActiveModel::Serializer) do
@@ -130,6 +130,20 @@ module ActiveModel
         assert_equal({
           'user' => { name: 'Name 1', email: 'mail@server.com', 'profile_id' => @user.profile.object_id },
           'profiles' => [{ name: 'fake' }]
+        }, @user_serializer.as_json)
+      end
+
+      def test_associations_embedding_objects_using_a_given_serializer
+        @association.serializer_class = Class.new(ActiveModel::Serializer) do
+          def name
+            'fake'
+          end
+
+          attributes :name
+        end
+
+        assert_equal({
+          'user' => { name: 'Name 1', email: 'mail@server.com', profile: { name: 'fake' } }
         }, @user_serializer.as_json)
       end
     end
