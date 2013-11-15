@@ -5,10 +5,7 @@ require 'active_model/serializer_support'
 require 'active_model/serializer/version'
 require 'active_model/serializer/railtie' if defined?(Rails) && defined?(Rails::Railtie)
 
-module ActiveModel
-  Errors = ActiveRecord::Errors # fix for authlogic gem
-end
-
+ActiveModel::Errors = ActiveRecord::Errors #fix for authlogic gem
 
 module ActiveSupport
   module Inflector
