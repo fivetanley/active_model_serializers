@@ -30,11 +30,7 @@ module ActiveModel
         end
       end
 
-<<<<<<< HEAD
-      class ConfigTest < ActiveRecord::TestCase
-=======
       class ConfigTest < Minitest::Test
->>>>>>> 61882e1e4127facfe92e49057aec71edbe981829
         def test_setup
           Serializer.setup do |config|
             config.a = 'v1'
@@ -67,11 +63,7 @@ module ActiveModel
         end
       end
 
-<<<<<<< HEAD
-      class ApplyConfigTest < ActiveRecord::TestCase
-=======
       class ApplyConfigTest < Minitest::Test
->>>>>>> 61882e1e4127facfe92e49057aec71edbe981829
         def test_apply_config_to_associations
           CONFIG.embed     = :ids
           CONFIG.embed_in_root = true

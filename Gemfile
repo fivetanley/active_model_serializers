@@ -23,3 +23,4 @@ end
 
 gem 'rails', "~> 2.3"
 gem 'iconv'
+gem 'minitest'

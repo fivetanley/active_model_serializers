@@ -18,11 +18,7 @@ module ActiveModel
       end
     end
 
-<<<<<<< HEAD
-    class NestedScopeTest < ActiveSupport::TestCase
-=======
     class NestedScopeTest < Minitest::Test
->>>>>>> 61882e1e4127facfe92e49057aec71edbe981829
       def setup
         @association = UserSerializer._associations[:profile]
         @old_association = @association.dup

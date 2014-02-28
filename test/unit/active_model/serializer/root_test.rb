@@ -70,11 +70,7 @@ module ActiveModel
       end
     end
 
-<<<<<<< HEAD
-    class RootInSerializerTest < ActiveRecord::TestCase
-=======
     class RootInSerializerTest < Minitest::Test
->>>>>>> 61882e1e4127facfe92e49057aec71edbe981829
       def setup
         @old_root = ProfileSerializer._root
         ProfileSerializer._root = :in_serializer

@@ -3,7 +3,6 @@ require 'test_helper'
 module ActiveModel
   class Serializer
     class HasOneTest < Minitest::Test
->>>>>>> 61882e1e4127facfe92e49057aec71edbe981829
       def setup
         @association = UserSerializer._associations[:profile]
         @old_association = @association.dup
