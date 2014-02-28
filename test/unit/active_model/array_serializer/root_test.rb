@@ -2,7 +2,7 @@ require 'test_helper'
 
 module ActiveModel
   class ArraySerializer
-    class RootAsOptionTest < ActiveRecord::TestCase
+    class RootAsOptionTest < Minitest::Test
       def setup
         @old_root = ArraySerializer._root
         @profile1 = Profile.new({ name: 'Name 1', description: 'Description 1', comments: 'Comments 1' })
@@ -50,7 +50,7 @@ module ActiveModel
       end
     end
 
-    class RootInSerializerTest < ActiveRecord::TestCase
+    class RootInSerializerTest < Minitest::Test
       def setup
         @old_root = ArraySerializer._root
         ArraySerializer._root = :in_serializer

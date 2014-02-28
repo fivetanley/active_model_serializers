@@ -2,7 +2,7 @@ require 'test_helper'
 
 module ActiveModel
   class Serializer
-    class FilterAttributesTest < ActiveRecord::TestCase
+    class FilterAttributesTest < Minitest::Test
       def setup
         @profile = Profile.new({ name: 'Name 1', description: 'Description 1', comments: 'Comments 1' })
         @profile_serializer = ProfileSerializer.new(@profile)
@@ -20,7 +20,11 @@ module ActiveModel
       end
     end
 
+<<<<<<< HEAD
     class FilterAssociationsTest < ActiveRecord::TestCase
+=======
+    class FilterAssociationsTest < Minitest::Test
+>>>>>>> 61882e1e4127facfe92e49057aec71edbe981829
       def setup
         @association = PostSerializer._associations[:comments]
         @old_association = @association.dup

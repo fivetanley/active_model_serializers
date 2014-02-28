@@ -2,7 +2,7 @@ require 'test_helper'
 
 module ActiveModel
   class Serializer
-    class RootAsOptionTest < ActiveRecord::TestCase
+    class RootAsOptionTest < Minitest::Test
       def setup
         @old_root = ProfileSerializer._root
         @profile = Profile.new({ name: 'Name 1', description: 'Description 1', comments: 'Comments 1' })
@@ -54,9 +54,27 @@ module ActiveModel
           name: 'Name 1', description: 'Description 1'
         }, @serializer.as_json)
       end
+
+      def test_root_inheritance
+        ProfileSerializer._root = 'profile'
+
+        inherited_serializer_klass = Class.new(ProfileSerializer)
+        inherited_serializer_klass._root = 'inherited_profile'
+
+        another_inherited_serializer_klass = Class.new(ProfileSerializer)
+
+        assert_equal('inherited_profile',
+                     inherited_serializer_klass._root)
+        assert_equal('profile',
+                     another_inherited_serializer_klass._root)
+      end
     end
 
+<<<<<<< HEAD
     class RootInSerializerTest < ActiveRecord::TestCase
+=======
+    class RootInSerializerTest < Minitest::Test
+>>>>>>> 61882e1e4127facfe92e49057aec71edbe981829
       def setup
         @old_root = ProfileSerializer._root
         ProfileSerializer._root = :in_serializer

@@ -2,7 +2,7 @@ require 'test_helper'
 
 module ActiveModel
   class Serializer
-    class ScopeTest < ActiveRecord::TestCase
+    class ScopeTest < Minitest::Test
       def setup
         @serializer = ProfileSerializer.new(nil, scope: current_user)
       end
@@ -18,7 +18,11 @@ module ActiveModel
       end
     end
 
+<<<<<<< HEAD
     class NestedScopeTest < ActiveSupport::TestCase
+=======
+    class NestedScopeTest < Minitest::Test
+>>>>>>> 61882e1e4127facfe92e49057aec71edbe981829
       def setup
         @association = UserSerializer._associations[:profile]
         @old_association = @association.dup
@@ -31,7 +35,7 @@ module ActiveModel
       end
 
       def test_scope_passed_through
-        @association.serializer_class = Class.new(ActiveModel::Serializer) do
+        @association.serializer_from_options = Class.new(Serializer) do
           def name
             scope
           end
